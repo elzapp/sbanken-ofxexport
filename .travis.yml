@@ -4,6 +4,8 @@ go:
   - 1.x
 install:
   - go get golang.org/x/lint/golint
+  - go get github.com/elzapp/go-sbanken
+  - go get github.com/elzapp/go-ofx
 #addons:
 #  sonarcloud:
 #    organization: "elzapp-github" # the key of the org you chose at step #3
