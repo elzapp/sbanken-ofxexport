@@ -19,4 +19,4 @@ jobs:
         - $HOME/gopath/bin/golint > golint.out
 #        - sonar-scanner -D"sonar.projectKey=elzapp_go-sbanken" -D"sonar.go.coverage.reportPaths=coverage.out" -D"sonar.go.golint.reportPaths=golint.out"
         - go build .
-        - GOOS=windows GOARCH=x86_64  go build .
+        - GOOS=windows GOARCH=amd64  go build .
