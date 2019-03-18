@@ -1,0 +1,20 @@
+dist: trusty
+language: go
+go:
+  - 1.x
+install:
+  - go get golang.org/x/lint/golint
+#addons:
+#  sonarcloud:
+#    organization: "elzapp-github" # the key of the org you chose at step #3
+#    token:
+#        secure: "kGpXrZFrtc1f1oBtM43VYgg+dIUeQSnRc+IyxhfGrzcx+twJjzjJVXLqOCflI2D0baki8/l11738VpbatswzmtYUgoYxMdDbS+qLb7JTgyEMBCv8pYbWbEXPJZUeAlFZTWT7NvAaQOBcbVaDZFfyrtNSfv/V/I/BLnAHtyqrsrGun3WlJK13OYpZ1tgq+C++g07x9MG/nsq2MQZ4OIkaJDS12YBQPligI8hVp9can/57DaanZfm1koDQeNay1rI5wG8Qb+kC6dwhajL+N+vC6NalcmBEydiDDZkdy24BJIAvNZ/0Bs4K31MSKkPXrRiqj5VSPODm4j5WebJxscnBrv6G7gyVTFnKZctMx0yGDuNNmVkUxFzIwt4zCMOyNEWZtGZbYzuZdjnkpSqF9kcTLM8yGUiChc9TrC1bBKSCyacR/C9c+3eT/zVxcvaDrgYW3dYPZOBBCGaEo9kuKKf8b0D0S9Sr91TLGifHUN1+WX/J99ZqLHlzETZuMLmNWsfHbbEO++pfGWCaF/b3t6/lhg+dpVvE87ENfZVGJLvaIgADz9O3TwZYFZlUHuGg+FzqFGzdEb+jT93lGTHnUlXJgbOOwEflQAtEoSZ75ZCVVtl45kyZPbsQkMlL08x+TRXann6Jb9yDUutfjM4JFGjWKejZI8KTt+EPnJhtRUBWx4g="
+jobs:
+  include:
+    - stage: test
+      script: 
+#        - go test -coverprofile=coverage.out -json > testreport.json
+        - $HOME/gopath/bin/golint > golint.out
+#        - sonar-scanner -D"sonar.projectKey=elzapp_go-sbanken" -D"sonar.go.coverage.reportPaths=coverage.out" -D"sonar.go.golint.reportPaths=golint.out"
+        - go build .
+        - GOOS=windows GOARCH=x86_64 go build .
