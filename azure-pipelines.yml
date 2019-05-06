@@ -42,4 +42,5 @@ steps:
   inputs:
     sshEndpoint: 'elzapp.com'
     contents: 'sbanken-ofxexport'
+    overwrite: true
     targetFolder: '/var/www/elzapp.com/pub/'
