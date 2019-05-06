@@ -41,6 +41,7 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'elzapp.com'
-    contents: '**'
+    sourceFolder: 'gopath/src/github.com/elzapp/sbanken-ofxexport'
+    contents: 'sbanken-ofxexport*'
     overwrite: true
     targetFolder: '/var/www/elzapp.com/pub/'
