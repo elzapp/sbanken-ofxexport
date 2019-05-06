@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'golang-latest'
 
 variables:
   GOBIN:  '$(GOPATH)/bin' # Go binaries path
