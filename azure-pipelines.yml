@@ -41,6 +41,5 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'elzapp.com'
-    sourceFolder: '.'
     contents: 'sbanken-ofxexport'
     targetFolder: '/var/www/elzapp.com/pub/'
