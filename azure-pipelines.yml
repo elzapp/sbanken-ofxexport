@@ -35,7 +35,7 @@ steps:
         dep ensure
     fi
     go build -v .
-    find .
+    GOOS=windows GOARCH=386 go build -o sbanken-ofxexport.exe .
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
 - task: CopyFilesOverSSH@0
