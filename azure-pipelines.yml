@@ -35,6 +35,7 @@ steps:
         dep ensure
     fi
     go build -v .
+    find .
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
 - task: CopyFilesOverSSH@0
