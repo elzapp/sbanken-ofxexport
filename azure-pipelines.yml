@@ -37,14 +37,14 @@ steps:
     fi
     mkdir -p build/linux/
     mkdir -p build/windows/
-    go build -v -o build/linux/sbanken-ofxexport .
+    go build -v -o build/linux/sbanken-ofxexport.${BUILD_BUILDNUMBER} .
     GOOS=windows GOARCH=386 go build -o build/windows/sbanken-ofxexport.${BUILD_BUILDNUMBER}.exe .
   workingDirectory: '$(modulePath)'
   displayName: 'Get dependencies, then build'
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'elzapp.com'
-    sourceFolder: 'gopath/src/github.com/elzapp/sbanken-ofxexport.${BUILD_BUILDNUMBER}'
+    sourceFolder: 'gopath/src/github.com/elzapp/sbanken-ofxexport'
     contents: '**/sbanken-ofxexport*'
     overwrite: true
     targetFolder: '/var/www/elzapp.com/pub/'
