@@ -28,6 +28,7 @@ steps:
   displayName: 'Set up the Go workspace'
 
 - script: |
+    env
     go version
     go get -v -t -d ./...
     if [ -f Gopkg.toml ]; then
