@@ -7,6 +7,7 @@ import (
 	"os"
 
 	"github.com/elzapp/go-ofx"
+	"github.com/sirupsen/logrus"
 
 	"github.com/elzapp/go-sbanken"
 )
@@ -24,7 +25,11 @@ func main() {
 	}
 	json.Unmarshal(config, &creds)
 	client := sbanken.NewAPIConnection(creds)
-	for _, account := range client.GetAccounts() {
+	accounts, err := client.GetAccounts()
+	if err != nil {
+		logrus.Error(err)
+	}
+	for _, account := range accounts {
 		var ofxlist ofx.OfxTransactionList
 		ofxlist.CurDef = "NOK"
 		ofxlist.PayerAccount = account.AccountNumber
@@ -34,7 +39,11 @@ func main() {
 
 		nonArchive := 0
 		archive := 0
-		for _, tx := range client.GetTransactions(account.AccountID) {
+		transactions, err := client.GetTransactions(account.AccountID)
+		if err != nil {
+			logrus.Error(err)
+		}
+		for _, tx := range transactions {
 			if tx.Source == "Archive" {
 				var btx ofx.BankTransaction
 				btx.Amount = tx.Amount
